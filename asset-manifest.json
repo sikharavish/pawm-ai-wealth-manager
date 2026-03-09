@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/pawm-ai-wealth-manager/static/css/main.e6c13ad2.css",
+    "main.js": "/pawm-ai-wealth-manager/static/js/main.083dd745.js",
+    "static/js/453.3cdd8485.chunk.js": "/pawm-ai-wealth-manager/static/js/453.3cdd8485.chunk.js",
+    "index.html": "/pawm-ai-wealth-manager/index.html",
+    "main.e6c13ad2.css.map": "/pawm-ai-wealth-manager/static/css/main.e6c13ad2.css.map",
+    "main.083dd745.js.map": "/pawm-ai-wealth-manager/static/js/main.083dd745.js.map",
+    "453.3cdd8485.chunk.js.map": "/pawm-ai-wealth-manager/static/js/453.3cdd8485.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.e6c13ad2.css",
+    "static/js/main.083dd745.js"
+  ]
+}
