@@ -1,6 +1,7 @@
 const { app } = require("@azure/functions");
 const fs = require("fs");
 const path = require("path");
+const parseCsvFile = require("../../services/csvParser");
 
 app.http("uploadCsv", {
   methods: ["POST"],
@@ -45,22 +46,26 @@ app.http("uploadCsv", {
 
       fs.writeFileSync(filePath, bodyBuffer);
 
+      const parsedRows = await parseCsvFile(filePath);
+
       return {
         status: 200,
         jsonBody: {
-          message: "CSV uploaded successfully",
+          message: "CSV uploaded and parsed successfully",
           fileName,
           filePath,
-          bytesSaved: bodyBuffer.length
+          bytesSaved: bodyBuffer.length,
+          rowCount: parsedRows.length,
+          rows: parsedRows
         }
       };
     } catch (error) {
-      context.log("Upload error:", error);
+      context.log("Upload/parse error:", error);
 
       return {
         status: 500,
         jsonBody: {
-          error: "Failed to upload CSV",
+          error: "Failed to upload and parse CSV",
           details: error.message
         }
       };
