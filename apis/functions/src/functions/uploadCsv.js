@@ -2,6 +2,7 @@ const { app } = require("@azure/functions");
 const fs = require("fs");
 const path = require("path");
 const parseCsvFile = require("../../services/csvParser");
+const { normalizeTransactions } = require("../../services/transactionNormalizer");
 
 app.http("uploadCsv", {
   methods: ["POST"],
@@ -47,20 +48,21 @@ app.http("uploadCsv", {
       fs.writeFileSync(filePath, bodyBuffer);
 
       const parsedRows = await parseCsvFile(filePath);
+      const normalizedRows = normalizeTransactions(parsedRows);
 
       return {
         status: 200,
         jsonBody: {
-          message: "CSV uploaded and parsed successfully",
+          message: "CSV uploaded,parsed,and normalized successfully",
           fileName,
           filePath,
           bytesSaved: bodyBuffer.length,
-          rowCount: parsedRows.length,
-          rows: parsedRows
+          rowCount: normalizedRows.length,
+          rows: normalizedRows
         }
       };
     } catch (error) {
-      context.log("Upload/parse error:", error);
+      context.log("Upload/parse/normalize error:", error);
 
       return {
         status: 500,
