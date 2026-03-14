@@ -55,7 +55,7 @@ app.http("uploadCsv", {
       return {
         status: 200,
         jsonBody: {
-          message: "CSV uploaded,parsed,and normalized successfully",
+          message: "CSV uploaded,parsed,normalized, and stored  successfully",
           fileName,
           filePath,
           bytesSaved: bodyBuffer.length,
