@@ -3,6 +3,7 @@ const fs = require("fs");
 const path = require("path");
 const parseCsvFile = require("../../services/csvParser");
 const { normalizeTransactions } = require("../../services/transactionNormalizer");
+const { insertTransactions } = require("../../services/transactionRepository");
 
 app.http("uploadCsv", {
   methods: ["POST"],
@@ -49,6 +50,7 @@ app.http("uploadCsv", {
 
       const parsedRows = await parseCsvFile(filePath);
       const normalizedRows = normalizeTransactions(parsedRows);
+      const insertedRows = await insertTransactions(normalizedRows);
 
       return {
         status: 200,
@@ -58,6 +60,7 @@ app.http("uploadCsv", {
           filePath,
           bytesSaved: bodyBuffer.length,
           rowCount: normalizedRows.length,
+          insertedCount: insertedRows.length,
           rows: normalizedRows
         }
       };
