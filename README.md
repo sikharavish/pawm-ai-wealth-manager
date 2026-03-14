@@ -1,7 +1,7 @@
 # Personal AI Wealth Manager (PAWM)
 
 ![Project Status](https://img.shields.io/badge/status-active%20development-blue)
-![Sprint](https://img.shields.io/badge/current%20sprint-Sprint%201-success)
+![Sprint](https://img.shields.io/badge/current%20sprint-Sprint%202-success)
 ![Backend](https://img.shields.io/badge/backend-Azure%20Functions-blue)
 ![Database](https://img.shields.io/badge/database-Supabase-green)
 ![Node](https://img.shields.io/badge/node-20.x-brightgreen)
